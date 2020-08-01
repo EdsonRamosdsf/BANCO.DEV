@@ -1,0 +1,353 @@
+package BDEV;
+
+import java.util.Scanner;
+
+public class BANCODEV {
+	public static void main(String[] args) {
+		int escolha, escolha1, somador=0, cartao;
+		float saldo[]=new float[2], sacar=0f, depositar=0f, transferir=0f;
+		Scanner aa = new Scanner(System.in);
+		String pessoas[]= {"sem ninguem","sem ninguem"};
+		String alternativa;
+		int numeros[]={99999999,99999999};
+		do {
+			System.out.println(" BANCODEV ==|OQUE DESEJA FAZER?|");
+			System.out.println("1. CADASTRAR PESSOAS     ");
+			System.out.println("2. ENTRAR                ");
+			System.out.println("3. SAIR DO BANCODEV      ");
+			escolha1=aa.nextInt();
+			if(escolha1==1) {
+				for (int i = 0; i < numeros.length; i++) {
+					System.out.println("DIGITE O NOME DA "+(1+i)+"° PESSOA!");
+					pessoas[i]=aa.next().substring(0).toUpperCase();
+					System.out.println("DIGITE O NÚMERO DO CARTÃO: ");
+					numeros[i]=aa.nextInt();
+					if(numeros[i]<10000000||numeros[i]>99999999) {
+						while(numeros[i]<10000000||numeros[i]>99999999) {
+							System.out.println("o número do Cartão deve ter 8 posições!! ");
+							System.out.println("insira um novo número: ");
+							numeros[i]=aa.nextInt();
+						}
+
+
+					}if(numeros[0]==numeros[1]) {
+						while(numeros[0]==numeros[1]) {
+							System.out.println("já existe esse número de cartão!! insira outro!!");
+							numeros[i]=aa.nextInt();
+						}
+					}
+					if(i==1) {
+						break;
+					}
+					System.out.println("deseja cadastrar a segunda pessoa? (s/n) ");
+					alternativa=aa.next();
+					if(alternativa.equalsIgnoreCase("s")) {
+						continue;
+					}else if(alternativa.equalsIgnoreCase("n")){
+						break;
+					}else {
+						while(!alternativa.equalsIgnoreCase("s")&&!alternativa.equalsIgnoreCase("n")) {
+							System.out.println("insira 's' para (sim) ou 'n' para (não)");
+							alternativa=aa.next();
+						}if(alternativa.equalsIgnoreCase("n")) {
+							break;
+						}
+
+					}
+				}
+				alternativa="q";
+				System.out.println("cadastro(s) efetuado(s) com sucesso..");
+				System.out.println();
+				System.out.println("deseja entrar no BANCODEV ? (s/n) ");
+				alternativa=aa.next();
+				if(alternativa.equalsIgnoreCase("s")) {
+					escolha1=2;
+				}if(alternativa.equalsIgnoreCase("n")) {
+					escolha1=3;
+				}else {
+					while(!alternativa.equalsIgnoreCase("s")&&!alternativa.equalsIgnoreCase("n")) {
+						System.out.println("insira 's' para (sim) ou 'n' para (não)");
+						alternativa=aa.next();
+					}
+				}
+
+
+			}
+			alternativa="q";
+			if (escolha1==2) {
+				System.out.println("insira o numero do seu cartão");
+				cartao=aa.nextInt();
+				jerry: for (int c = 0; c < numeros.length; c++) {
+					if(cartao==numeros[c]) {
+
+						tom: for (int i = 0; i < pessoas.length; i++) {
+							if(escolha1==3) {
+								break tom;
+							}
+							System.out.println("_____________________________________________");
+							System.out.println("olá "+pessoas[c]+" bem vindo(a) ao BANCODEV. ");
+							System.out.println("______________________________________________");
+							System.out.println("----------------------------------------------");
+							System.out.println("================== BANCODEV ==================");
+							System.out.println("----------------------------------------------");
+							System.out.println("            O QUE DESEJA FAZER ? ");
+							System.out.println("______________________________________________");
+							System.out.println();
+							System.out.println("1. VER DISPONIBILIDADE DE CADASTRO    ________");
+							System.out.println("2. NOVO CADASTRO     _________________________");
+							System.out.println("3. CONSULTAR SALDO    ________________________");
+							System.out.println("4. SACAR          ____________________________");
+							System.out.println("5. DEPOSITAR        __________________________");
+							System.out.println("6. FAZER TRANSFERÊNCIA    ____________________");
+							System.out.println("7. AJUDA           ___________________________");
+							System.out.println("8. SAIR ");
+							System.out.println("______________________________________________");
+							System.out.println("==============================================");
+							escolha=aa.nextInt();
+							if(escolha==1) {
+								for (int j = 0; j < numeros.length; j++) {
+									if(numeros[j]==99999999) {
+										somador++;
+									}
+								}
+								System.out.println("existe: "+somador+" vaga de 2" );
+								System.out.println();
+
+							} else 
+								if(escolha==2) {
+									System.out.println("onde quer cadastrar? ");
+									System.out.println("vaga 1: "+pessoas[0]);
+									System.out.println("vaga 2: "+pessoas[1]);
+									System.out.println("escolha a vaga: 1 ou 2 ");
+									escolha=aa.nextInt();
+									for (int j = 0; j < numeros.length; j++) {
+										if(escolha==(j+1)) {
+											System.out.println("insira o nome da pessoa:");
+											pessoas[j]=aa.next().substring(0).toUpperCase();
+											System.out.println("insira o numero do cartão: ");
+											numeros[j]=aa.nextInt();
+											if(numeros[j]<10000000||numeros[j]>99999999) {
+												while(numeros[j]<10000000||numeros[j]>99999999) {
+													System.out.println("o número do Cartão deve ter 8 posições!! ");
+													System.out.println("insira um novo número: ");
+													numeros[j]=aa.nextInt();
+												}
+											}if(numeros[0]==numeros[1]) {
+												while(numeros[0]==numeros[1]) {
+													System.out.println("já existe esse número de cartão!! insira outro!!");
+													numeros[j]=aa.nextInt();
+												}
+											}
+										}
+									}
+									System.out.println("cadastro realizado com sucesso ..");
+								}else
+									if(escolha==3) {
+										System.out.println("insira o número do seu cartão: ");
+										do {
+											cartao=aa.nextInt();
+											if(cartao==numeros[c]) {
+												System.out.printf("olá %s seu saldo é de: R$ %.2f",pessoas[c],saldo[c]);
+												System.out.println();
+
+											} else {
+												System.out.println("tem certeza que você é "+pessoas[c]+" ?" );
+												System.out.println("coloque novamente o número do seu cartão: ");
+											}
+										}while(cartao!=numeros[c]);
+									} else
+										if(escolha==4) {
+											System.out.println("insira o numero do seu cartão: ");
+											do {
+												cartao=aa.nextInt();
+												if(cartao==numeros[c]) {
+													if(saldo[c]==0) {
+														System.out.println("desculpe "+pessoas[c]+" , seu saldo é R$ 0.00 ");
+														System.out.println();
+
+													}
+
+													System.out.println("Quanto você gostaria de sacar ?");
+													do {
+														sacar=aa.nextFloat();
+														if(sacar<saldo[c]) {
+															saldo[c]-=sacar;
+															System.out.println("saque efetuado com sucesso..");
+															System.out.println();
+															System.out.printf(pessoas[c]+" você sacou R$ %.2f, \nseu saldo agora é: R$ %.2f ",sacar,saldo[c]);
+															sacar=0;
+															System.out.println();
+														}else
+															if(sacar<0){ 
+																System.out.println("insira um valor positivo! ");
+
+															}
+															else {
+																System.out.println("seu saldo é insuficiente para fazer essa operação");
+															}
+													}while(sacar<0);
+
+
+
+												}else {
+													System.out.println("você é "+pessoas[c]+" ? ");
+													System.out.println("insira novamento o número do seu cartão");
+												}
+											}while(cartao!=numeros[c]);
+											sacar=0;
+										} else
+											if(escolha==5) {
+												System.out.println("insira o numero do seu cartão: ");
+												do {
+													cartao=aa.nextInt();
+													if(cartao==numeros[c]) {
+														System.out.println(pessoas[c]+" Quanto você gostaria de depositar na sua conta ?");
+														depositar=aa.nextFloat();
+														if(depositar<=0) {
+															while(depositar<=0) {
+																System.out.println("insira um valor válido: ");
+																depositar=aa.nextFloat();
+															}
+														}
+														saldo[c]+=depositar;
+														System.out.println("depósito realizado com sucesso..");
+														System.out.printf("você depositou R$ %.2f \nseu saldo agora é: R$ %.2f ",depositar,saldo[c]);
+														System.out.println();
+													}else {
+														System.out.println("você é "+pessoas[c]+" ? ");
+														System.out.println("insira novamento o número do seu cartão");
+													}
+												}while(cartao!=numeros[c]);
+												depositar=0;
+											} else
+												if(escolha==6) {
+													System.out.println("insira o numero do seu cartão: ");
+													do {
+														cartao=aa.nextInt();
+														if(cartao==numeros[c]) {
+															System.out.println(pessoas[c]+" você gostaria de transferir quanto ?");
+															transferir=aa.nextFloat();
+															if(transferir<=0) {
+																while(depositar<=0) {
+																	System.out.println("insira um valor válido: ");
+																	transferir=aa.nextFloat();
+																}
+															}else 
+																if(transferir>saldo[c]) {
+																	while(transferir>saldo[c]||transferir<0) {
+																		System.out.println("você não pode transferir esse valor");
+																		System.out.println("por favor, coloque outro: ");
+																	}
+																}
+															saldo[c]-=transferir;
+															System.out.println("para qual conta deseja transferir esse valor? ");
+															for (int j = 0; j < pessoas.length; j++) {
+																System.out.println("conta "+(j+1)+" : "+pessoas[j]);
+															}
+															escolha=aa.nextInt();
+															while(escolha<=0||escolha-1>pessoas.length) {
+																System.out.println(" escolha uma número válido: ");
+																escolha=aa.nextInt();
+
+															}
+															saldo[escolha-1]+=transferir;
+															System.out.println("transferência realizada com sucesso..");
+															System.out.printf("você transferiu R$ %.2f para a conta de %s \nseu saldo agora é: R$ %.2f \n",transferir,pessoas[escolha-1],saldo[c]);
+															System.out.println();
+														}else {
+															System.out.println("você é "+pessoas[c]+" ? ");
+															System.out.println("insira novamento o número do seu cartão");
+														}
+													}while(cartao!=numeros[c]);
+													transferir=0;
+												}else
+													if(escolha==7){
+														System.out.println("                  Siga as instruções do sistema\n          caso o sistema não tenha um bom funcinamento");
+														System.out.println("               Entre em contado com o desenvolvedor");
+														System.out.println("         o BANCODEV é um sistema criado por ==EDSON RAMOS==");
+														System.out.println(" Caso encontre falhas no sistema fale com o mesmo para poder resolver");
+														System.out.println("  Systema criado dia: 20-06-2020 às 22:00 horas ATUALIZAÇÃO: ATUAL ");
+														System.out.println("\n");
+														System.out.println("INSTAGRAM: edsonrdsf   \nLINKEDIN:edson-ramos-6709651a2");
+														System.out.println("GITHUB:EdsonRamosdsf\n\n");
+
+													}else
+														if(escolha==8){
+															break jerry;
+
+														}else {
+															while(escolha!=1&&escolha!=2&&escolha!=3&&escolha!=4&&escolha!=5&&escolha!=6&&escolha!=7) {
+																System.out.println("insira um número válido! ");
+																escolha=aa.nextInt();
+															}  
+														}
+
+						}
+					}else{
+						while(cartao!=numeros[0]&&cartao!=numeros[1]) {
+							System.out.println("você está cadastrado? insira um número do cartão válido: ");
+							cartao=aa.nextInt();
+							if(cartao!=numeros[0]&&cartao!=numeros[1]) {
+								System.out.println("deseja fazer o cadastro? (s/n)");
+								alternativa=aa.next();
+								if (alternativa.equalsIgnoreCase("s")) {                                    
+									System.out.println("onde quer cadastrar? ");
+									System.out.println("vaga 1: "+pessoas[0]);
+									System.out.println("vaga 2: "+pessoas[1]);
+									System.out.println("escolha a vaga: 1 ou 2 ");
+									escolha=aa.nextInt();
+									for (int j = 0; j < numeros.length; j++) {
+										if(escolha==(j+1)) {
+											System.out.println("insira o nome da pessoa:");
+											pessoas[j]=aa.next().substring(0).toUpperCase();
+											System.out.println("insira o numero do cartão: ");
+											numeros[j]=aa.nextInt();
+											if(numeros[j]<10000000||numeros[j]>99999999) {
+												while(numeros[j]<10000000||numeros[j]>99999999) {
+													System.out.println("o número do Cartão deve ter 8 posições!! ");
+													System.out.println("insira um novo número: ");
+													numeros[j]=aa.nextInt();
+												}
+											}if(numeros[0]==numeros[1]) {
+												while(numeros[0]==numeros[1]) {
+													System.out.println("já existe esse número de cartão!! insira outro!!");
+													numeros[j]=aa.nextInt();
+												}
+											}
+										}
+									}
+									System.out.println("cadastro realizado com sucesso ..");
+
+								}else 
+									if(alternativa.equalsIgnoreCase("n")){
+										escolha1=3;
+
+									}
+							}
+						}
+					}
+					alternativa="q";
+				}
+
+			}
+			if (escolha1==3) {
+				System.out.println("você saiu do BANCODEV...");
+			}else {
+				while(escolha1!=1&&escolha1!=2&&escolha1!=3) {
+					System.out.println("insira uma número válido! ");
+					escolha1=aa.nextInt();	
+
+				}
+
+
+			}	
+			System.out.println("deseja fazer outra operação? ");
+			alternativa=aa.next();
+			if(alternativa.equalsIgnoreCase("n")) {
+				System.out.println("         você saiu do sistema..");
+				System.out.println(" | O 'BANCODEV' AGRADECE A PREFERÊNCIA |");
+			}
+		}while(alternativa.equalsIgnoreCase("s"));
+		aa.close();
+	}
+}
